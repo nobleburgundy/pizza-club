@@ -15,9 +15,7 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
-    <button @click="$emit('del-pizza', pizza.id)" class="btn del">
-      X
-    </button>
+    <button @click="$emit('del-pizza', pizza.id)" class="btn del">X</button>
   </div>
 </template>
 
@@ -33,6 +31,7 @@ export default {
   background: #afeeee;
   text-align: left;
   padding: 20px;
+  overflow: hidden;
 }
 .btn {
   border: none;

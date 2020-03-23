@@ -2,7 +2,7 @@
   <div id="form-container">
     <h2>Add pizza...</h2>
     <div id="add-pizza-form">
-      <form @submit="addPizza">
+      <form @submit="addPizza" name="addPizza">
         <div>
           <input
             type="text"
@@ -13,13 +13,7 @@
           />
         </div>
         <div>
-          <input
-            type="text"
-            v-model="pizza"
-            name="pizza"
-            placeholder="Add Pizza..."
-            required
-          />
+          <input type="text" v-model="pizza" name="pizza" placeholder="Add Pizza..." required />
         </div>
         <div>
           <input
@@ -34,14 +28,7 @@
           <input type="text" v-model="style" name="style" placeholder="Style" />
         </div>
         <div>
-          <input
-            type="number"
-            v-model="score"
-            min="1"
-            max="5"
-            name="score"
-            required
-          />
+          <input type="number" v-model="score" min="1" max="5" name="score" required />
         </div>
         <div>
           <input type="submit" value="Submit" class="btn" />

@@ -44,9 +44,12 @@ export default {
     }
   },
   created() {
+    console.log("created()");
     axios
       .get("http://localhost:5000/api/pizzas/")
-      .then(res => (this.pizzas = res.data))
+      .then(res => {
+        this.pizzas = res.data;
+      })
       .catch(err => console.log(err));
   }
 };
