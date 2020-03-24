@@ -7,7 +7,13 @@
         <input type="text" v-model="pizza" placeholder="pizza" />
         <input type="text" v-model="description" placeholder="description" />
         <input type="text" v-model="style" placeholder="style" />
-        <input type="number" v-model="score" min="1" max="5" />
+        <input
+          type="number"
+          v-model="score"
+          min="1"
+          max="5"
+          placeholder="score"
+        />
         <input type="submit" value="submit" />
       </form>
     </div>
@@ -44,18 +50,26 @@ export default {
 </script>
 
 <style scoped>
-.add {
+form {
   display: flex;
   flex-wrap: wrap;
-  width: 250px;
+  align-items: center;
+  width: 350px;
   margin: auto auto;
 }
 input {
-  flex: 10;
-  flex-basis: 250px;
-  padding: 10px;
   border: 1px solid #41b883;
   outline: 0;
   margin: 5px;
+  padding: 10px;
+}
+input[type="text"] {
+  flex: 1 0 250px;
+}
+label {
+  flex: 1 0 100px;
+}
+input[type="submit"] {
+  flex: 1 0 100px;
 }
 </style>
