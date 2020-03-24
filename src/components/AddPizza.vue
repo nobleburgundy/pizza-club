@@ -1,44 +1,21 @@
 <template>
-  <div id="form-container">
-    <h2>Add pizza...</h2>
-    <div id="add-pizza-form">
-      <form @submit="addPizza" name="addPizza">
-        <div>
-          <input
-            type="text"
-            v-model="restaurant"
-            name="restaurant"
-            placeholder="Restaurant"
-            required
-          />
-        </div>
-        <div>
-          <input type="text" v-model="pizza" name="pizza" placeholder="Add Pizza..." required />
-        </div>
-        <div>
-          <input
-            type="text"
-            v-model="description"
-            name="description"
-            placeholder="Description"
-            maxlength="400"
-          />
-        </div>
-        <div>
-          <input type="text" v-model="style" name="style" placeholder="Style" />
-        </div>
-        <div>
-          <input type="number" v-model="score" min="1" max="5" name="score" required />
-        </div>
-        <div>
-          <input type="submit" value="Submit" class="btn" />
-        </div>
+  <div>
+    <h3>Add Pizza 2</h3>
+    <div class="add">
+      <form @submit="onSubmit">
+        <input type="text" v-model="restaurant" placeholder="restaurant" />
+        <input type="text" v-model="pizza" placeholder="pizza" />
+        <input type="text" v-model="description" placeholder="description" />
+        <input type="text" v-model="style" placeholder="style" />
+        <input type="number" v-model="score" min="1" max="5" />
+        <input type="submit" value="submit" />
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
 export default {
   name: "AddPizza",
   data() {
@@ -51,43 +28,34 @@ export default {
     };
   },
   methods: {
-    addPizza(e) {
+    ...mapActions(["addPizza"]),
+    onSubmit(e) {
       e.preventDefault();
-      const newPizza = {
-        restaurant: this.restaurant,
-        pizza: this.pizza,
-        description: this.description,
-        style: this.style,
-        score: this.score
-      };
-      // send up to parent
-      this.$emit("add-pizza", newPizza);
-      this.restaurant = "";
-      this.pizza = "";
-      this.description = "";
-      this.style = "";
-      this.score = 0;
+      this.addPizza(
+        this.restaurant,
+        this.pizza,
+        this.description,
+        this.style,
+        this.score
+      );
     }
   }
 };
 </script>
 
 <style scoped>
-#form-container {
-  display: inline-block;
-  width: 500px;
-}
-#add-pizza-form {
-  padding-top: 1rem;
+.add {
+  display: flex;
+  flex-wrap: wrap;
+  width: 250px;
+  margin: auto auto;
 }
 input {
-  margin-bottom: 10px;
-}
-input[type="text"] {
-  width: 50%;
-  padding: 5px;
-}
-input[type="number"] {
-  padding: 5px;
+  flex: 10;
+  flex-basis: 250px;
+  padding: 10px;
+  border: 1px solid #41b883;
+  outline: 0;
+  margin: 5px;
 }
 </style>

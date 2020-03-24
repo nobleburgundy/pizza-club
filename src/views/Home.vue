@@ -1,20 +1,20 @@
 <template>
   <div id="app">
     <Pizzas v-bind:pizzas="pizzas" v-on:del-pizza="deletePizza" />
-    <AddPizza v-on:add-pizza="addPizza" />
+    <AddPizza2 />
   </div>
 </template>
 
 <script>
 import Pizzas from "../components/PizzaCollection";
-import AddPizza from "../components/AddPizza";
+import AddPizza2 from "../components/AddPizza";
 import axios from "axios";
 
 export default {
   name: "Home",
   components: {
     Pizzas,
-    AddPizza
+    AddPizza2
   },
   data() {
     return {
@@ -44,7 +44,6 @@ export default {
     }
   },
   created() {
-    console.log("created()");
     axios
       .get("http://localhost:5000/api/pizzas/")
       .then(res => {

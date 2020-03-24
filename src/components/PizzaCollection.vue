@@ -1,6 +1,6 @@
 <template>
   <div class="pizzas">
-    <div v-bind:key="pizza._id" v-for="pizza in pizzas">
+    <div v-for="pizza in allPizzas" :key="pizza._id" class="pizza">
       <PizzaItem
         v-bind:pizza="pizza"
         v-on:del-pizza="$emit('del-pizza', pizza._id)"
@@ -10,10 +10,18 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from "vuex";
 import PizzaItem from "./Pizza.vue";
 
 export default {
   name: "Pizzas",
+  methods: {
+    ...mapActions(["fetchPizzas"])
+  },
+  computed: mapGetters(["allPizzas"]),
+  created() {
+    this.fetchPizzas();
+  },
   components: {
     PizzaItem
   },
