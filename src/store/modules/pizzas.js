@@ -1,36 +1,85 @@
 import axios from "axios";
 
-const state = {
-  pizzas: []
+const getDefaultState = () => {
+  return {
+    pizzas: [],
+    status: "default"
+  };
 };
+const state = getDefaultState();
 
 const getters = {
   allPizzas: state => state.pizzas
 };
 
 const actions = {
+  resetPizzaState({ commit }) {
+    const test = this.fetchPizzas();
+    console.log(test);
+    commit("resetPizzaState");
+  },
   async fetchPizzas({ commit }) {
     const response = await axios.get("http://localhost:5000/api/pizzas");
 
     commit("setPizzas", response.data);
   },
   async addPizza({ commit }, restaurant, pizza, description, style, score) {
-    const response = await axios
-      .post("http://localhost:5000/api/pizzas", {
-        restaurant,
-        pizza,
-        description,
-        style,
-        score
-      })
-      .then(commit("newPizza", response.data))
-      .catch(err => console.log(err));
+    const response = await axios.post("http://localhost:5000/api/pizzas", {
+      restaurant,
+      pizza,
+      description,
+      style,
+      score
+    });
+
+    commit("newPizza", response.data);
+  },
+  async deletePizza({ commit }, id) {
+    const response = await axios.delete(
+      `http://localhost:5000/api/pizzas/${id}`
+    );
+    if (!response.status == 200) {
+      console.error(response.statusText);
+    }
+
+    commit("removePizza", id);
+  },
+  filterPizzas({ commit, dispatch }, e) {
+    // get selected number
+    const score =
+      parseInt(e.target.options[e.target.options.selectedIndex].innerText) || 0;
+    if (score === 0) {
+      dispatch("fetchPizzas");
+    } else {
+      commit("filterPizzas", score);
+    }
+  },
+  async updatePizza({ commit }, updatedPizza) {
+    const response = await axios.put(
+      `http://localhost:5000/api/pizzas/${updatedPizza._id}`,
+      updatedPizza
+    );
+    console.log(response.data);
+    commit("updatePizza", updatedPizza);
   }
 };
 
 const mutations = {
+  resetPizzaState: state => state.pizzas,
   setPizzas: (state, pizzas) => (state.pizzas = pizzas),
-  newPizza: (state, pizza) => state.pizzas.unshift(pizza)
+  newPizza: (state, pizza) => state.pizzas.push(pizza),
+  removePizza: (state, id) =>
+    (state.pizzas = state.pizzas.filter(pizza => pizza._id !== id)),
+  filterPizzas: (state, score) =>
+    (state.pizzas = state.pizzas.filter(pizza => pizza.score == score)),
+  updatePizza: (state, updatedPizza) => {
+    const index = state.pizzas.findIndex(
+      pizza => pizza.id === updatedPizza._id
+    );
+    if (index !== -1) {
+      state.pizzas.splice(index, 1, updatedPizza);
+    }
+  }
 };
 
 export default {

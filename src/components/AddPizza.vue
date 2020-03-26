@@ -7,13 +7,7 @@
         <input type="text" v-model="pizza" placeholder="pizza" />
         <input type="text" v-model="description" placeholder="description" />
         <input type="text" v-model="style" placeholder="style" />
-        <input
-          type="number"
-          v-model="score"
-          min="1"
-          max="5"
-          placeholder="score"
-        />
+        <input type="number" v-model="score" min="1" max="5" placeholder="score" />
         <input type="submit" value="submit" />
       </form>
     </div>

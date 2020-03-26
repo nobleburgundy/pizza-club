@@ -15,7 +15,6 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
-    <button @click="$emit('del-pizza', pizza.id)" class="btn del">X</button>
   </div>
 </template>
 
@@ -45,11 +44,10 @@ export default {
   opacity: 0.9;
 }
 .del {
-  background: #ff0000;
-  color: #fff;
   position: absolute;
-  top: 5px;
-  right: 5px;
+  top: 7px;
+  right: 7px;
+  cursor: pointer;
 }
 p {
   font-size: 0.7rem;
