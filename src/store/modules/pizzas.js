@@ -6,6 +6,7 @@ const getDefaultState = () => {
     status: "default"
   };
 };
+
 const state = getDefaultState();
 
 const getters = {

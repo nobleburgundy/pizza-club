@@ -1,7 +1,7 @@
 <template>
   <div>
     Filter Pizzas:
-    <select @change="filterPizzas($event)">
+    <select id="filter-pizzas" @change="filterPizzas($event)">
       <option value="0" default>All</option>
       <option value="5">5</option>
       <option value="4">4</option>
