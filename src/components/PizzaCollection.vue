@@ -2,8 +2,6 @@
   <div class="pizzas">
     <div v-for="pizza in allPizzas" :key="pizza._id" class="pizza">
       <PizzaItem v-bind:pizza="pizza" />
-      <i class="far fa-edit edit" @dblclick="updatePizza(pizza)"></i>
-      <i class="fas fa-trash-alt del" @click="deletePizza(pizza._id)"></i>
     </div>
   </div>
 </template>
@@ -52,22 +50,10 @@ export default {
   grid-gap: 1rem;
 }
 .pizza {
+  background: #afeeee;
   position: relative;
   padding-right: 2rem;
   height: 170px;
-}
-.del {
-  position: absolute;
-  top: 7px;
-  right: 7px;
-  cursor: pointer;
-}
-.edit {
-  position: absolute;
-  top: 35px;
-  right: 3px;
-  text-align: center;
-  cursor: pointer;
 }
 
 @media (max-width: 900px) {

@@ -2,12 +2,38 @@
   <div>
     <h3>Add Pizza 2</h3>
     <div class="add">
-      <form @submit="onSubmit">
-        <input type="text" v-model="restaurant" placeholder="restaurant" />
-        <input type="text" v-model="pizza" placeholder="pizza" />
-        <input type="text" v-model="description" placeholder="description" />
-        <input type="text" v-model="style" placeholder="style" />
-        <input type="number" v-model="score" min="1" max="5" placeholder="score" />
+      <form id="add-pizza-form" @submit="onSubmit">
+        <input
+          type="text"
+          v-model="restaurant"
+          data-test-id="restaurant"
+          placeholder="restaurant"
+        />
+        <input
+          type="text"
+          v-model="pizza"
+          data-test-id="pizza"
+          placeholder="pizza"
+        />
+        <input
+          type="text"
+          v-model="description"
+          data-test-id="description"
+          placeholder="description"
+        />
+        <input
+          type="text"
+          v-model="style"
+          data-test-id="style"
+          placeholder="style"
+        />
+        <select v-model="score" data-test-id="score">
+          <option>1</option>
+          <option>2</option>
+          <option default>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
         <input type="submit" value="submit" />
       </form>
     </div>
@@ -51,7 +77,8 @@ form {
   width: 350px;
   margin: auto auto;
 }
-input {
+input,
+select {
   border: 1px solid #41b883;
   outline: 0;
   margin: 5px;

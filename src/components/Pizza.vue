@@ -1,5 +1,5 @@
 <template>
-  <div class="pizza pizza-item">
+  <div class="pizza-item">
     <div class="pizza-restaurant">
       <h2>{{ pizza.restaurant }}</h2>
     </div>
@@ -15,13 +15,32 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
+    <i class="far fa-edit edit" @dblclick="updatePizza(pizza)"></i>
+    <i class="fas fa-trash-alt del" @click="deletePizza(pizza._id)"></i>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   name: "PizzaItem",
-  props: ["pizza"]
+  props: ["pizza"],
+  methods: {
+    ...mapActions(["deletePizza", "updatePizza"]),
+    onDblClick(pizza) {
+      const updPizza = {
+        id: pizza._id,
+        restaurant: pizza.restaurant + " updated",
+        description: pizza.description,
+        style: pizza.style,
+        score: pizza.score,
+        createdAt: pizza.createdAt
+      };
+
+      this.updatePizza(updPizza);
+    }
+  }
 };
 </script>
 
@@ -70,9 +89,22 @@ p {
   text-transform: uppercase;
   position: absolute;
   left: 99%;
-  top: 35px;
+  top: 40%;
   width: 100%;
   transform-origin: 0 0;
   transform: rotate(90deg);
+}
+.del {
+  position: absolute;
+  top: 7px;
+  right: 7px;
+  cursor: pointer;
+}
+.edit {
+  position: absolute;
+  top: 7px;
+  right: 35px;
+  text-align: center;
+  cursor: pointer;
 }
 </style>
