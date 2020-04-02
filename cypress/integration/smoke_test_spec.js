@@ -7,7 +7,7 @@ const postPayload = {
   score: 5
 };
 
-describe("API connection test", () => {
+describe("API smoke test", () => {
   it("GET request test", () => {
     cy.request("http://localhost:5000/api/pizzas").then(response => {
       expect(response.status).to.eq(200);
@@ -26,12 +26,12 @@ describe("API connection test", () => {
     );
   });
   it("GET request with SCORE query", () => {
-    const score = "5";
+    const score = 5;
     cy.request(`http://localhost:5000/api/pizzas?score=${score}`).then(
       response => {
         expect(response.status).to.eq(200);
         response.body.forEach(element => {
-          expect(element.restaurant).to.eq(input);
+          expect(element.score).to.eq(score);
         });
       }
     );
@@ -42,7 +42,7 @@ describe("API connection test", () => {
       response => {
         expect(response.status).to.eq(200);
         response.body.forEach(element => {
-          expect(element.restaurant).to.eq(input);
+          expect(element.pizza).to.eq(pizza);
         });
       }
     );
@@ -53,7 +53,7 @@ describe("API connection test", () => {
       response => {
         expect(response.status).to.eq(200);
         response.body.forEach(element => {
-          expect(element.restaurant).to.eq(input);
+          expect(element.style).to.eq(style);
         });
       }
     );
@@ -79,17 +79,15 @@ before(() => {
   cy.visit("/");
 });
 
-describe("Smoke Test", function() {
+describe("UI Smoke Test", function() {
   it("Application opens", function() {
     cy.xpath("//h1")
       .should("be.visible")
       .and("contain", "Welcome to Pizza Club");
   });
-
   it("Filter Pizzas Filter Exists", function() {
     cy.xpath("//select[@id='filter-pizzas']").should("be.visible");
   });
-
   it("Add Pizza form should be visible", () => {
     cy.xpath("//form[@id='add-pizza-form']").should("be.visible");
   });
