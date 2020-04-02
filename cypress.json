@@ -1,5 +1,9 @@
 {
   "baseUrl": "http://localhost:8080",
   "video": false,
-  "projectId": "uuek7o"
+  "projectId": "uuek7o",
+  "fixturesFolder": "cypress/fixtures",
+  "integrationFolder": "cypress/integration",
+  "pluginsFile": "cypress/plugins/index.js",
+  "supportFile": "cypress/support/index.js"
 }
