@@ -27,8 +27,8 @@ body {
 .container {
   max-width: 1100px;
   margin: auto;
-  overflow: auto;
-  padding: 0 2rem;
+  overflow-y: hidden;
+  padding: 0 2rem 5rem;
 }
 #nav {
   padding: 30px;

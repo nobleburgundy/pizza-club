@@ -1,8 +1,9 @@
 <template>
   <div id="app">
+    <AddPizza v-model="modalOpen" />
     <FilterPizza />
+    <button data-test-id="add-pizza-btn" @click="openModal">Add Pizza</button>
     <Pizzas />
-    <AddPizza />
   </div>
 </template>
 
@@ -17,6 +18,16 @@ export default {
     Pizzas,
     AddPizza,
     FilterPizza
+  },
+  data() {
+    return {
+      modalOpen: false
+    };
+  },
+  methods: {
+    openModal() {
+      this.modalOpen = !this.modalOpen;
+    }
   }
 };
 </script>
@@ -33,14 +44,10 @@ body {
   width: 80%;
   margin: auto auto;
 }
-.btn {
-  display: inline-block;
-  border: none;
-  background: #555;
-  padding: 7px 20px;
-  cursor: pointer;
-}
-.btn:hover {
-  background: #666;
+button {
+  border: 1px solid #41b883;
+  margin: 5px;
+  padding: 5px;
+  width: 200px;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <div>
-    Filter Pizzas:
-    <select id="filter-pizzas" @change="filterPizzas($event)">
+  <div class="filter">
+    <label for="filter-pizzas">Filter Pizzas:</label>
+    <select id="filter-pizzas" name="filter-pizzas" @change="filterPizzas($event)">
       <option value="0" default>All</option>
       <option value="5">5</option>
       <option value="4">4</option>
@@ -22,8 +22,10 @@ export default {
 
 <style>
 select {
-  margin: 20px;
   padding: 5px;
   border: #41b883 1px solid;
+}
+.filter {
+  float: left;
 }
 </style>

@@ -1,42 +1,21 @@
 <template>
-  <div>
-    <h3>Add Pizza 2</h3>
-    <div class="add">
-      <form id="add-pizza-form" @submit="onSubmit">
-        <input
-          type="text"
-          v-model="restaurant"
-          data-test-id="restaurant"
-          placeholder="restaurant"
-        />
-        <input
-          type="text"
-          v-model="pizza"
-          data-test-id="pizza"
-          placeholder="pizza"
-        />
-        <input
-          type="text"
-          v-model="description"
-          data-test-id="description"
-          placeholder="description"
-        />
-        <input
-          type="text"
-          v-model="style"
-          data-test-id="style"
-          placeholder="style"
-        />
-        <select v-model="score" data-test-id="score">
-          <option>1</option>
-          <option>2</option>
-          <option default>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
-        <input type="submit" value="submit" />
-      </form>
-    </div>
+  <div class="add" id="add-pizza-container" v-show="value">
+    <form id="add-pizza-form" @submit="onSubmit">
+      <h2>Add Pizza</h2>
+      <input type="text" v-model="restaurant" data-test-id="restaurant" placeholder="restaurant" />
+      <input type="text" v-model="pizza" data-test-id="pizza" placeholder="pizza" />
+      <input type="text" v-model="description" data-test-id="description" placeholder="description" />
+      <input type="text" v-model="style" data-test-id="style" id="style" placeholder="style" />
+      <select v-model="score" data-test-id="score" id="score">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+      </select>
+      <input type="submit" value="submit" />
+      <button @click.prevent="close">close</button>
+    </form>
   </div>
 </template>
 
@@ -53,6 +32,11 @@ export default {
       score: 0
     };
   },
+  props: {
+    value: {
+      required: true
+    }
+  },
   methods: {
     ...mapActions(["addPizza"]),
     onSubmit(e) {
@@ -64,25 +48,43 @@ export default {
         this.style,
         this.score
       );
+    },
+    close() {
+      this.$emit("input", !this.value);
     }
   }
 };
 </script>
 
 <style scoped>
+#add-pizza-container {
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.9);
+}
 form {
+  margin: 15% auto;
+  padding: 20px;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  width: 350px;
-  margin: auto auto;
+  width: 450px;
 }
 input,
+button,
 select {
   border: 1px solid #41b883;
   outline: 0;
   margin: 5px;
   padding: 10px;
+}
+button {
+  flex: 1 3 50px;
 }
 input[type="text"] {
   flex: 1 0 250px;
@@ -91,6 +93,21 @@ label {
   flex: 1 0 100px;
 }
 input[type="submit"] {
-  flex: 1 0 100px;
+  flex: 1 0 250px;
+}
+#style {
+  flex: 1 0 250px;
+}
+#score {
+  flex: 1 3 50px;
+}
+h2 {
+  width: 100%;
+  color: aqua;
+  margin: auto;
+  text-transform: uppercase;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-shadow: lightgrey 5px 1px;
+  letter-spacing: 0.5rem;
 }
 </style>
