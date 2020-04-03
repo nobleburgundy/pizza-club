@@ -49,14 +49,12 @@ export default {
   background: #afeeee;
   text-align: left;
   padding: 20px;
-  overflow: hidden;
 }
 .btn {
   border: none;
   width: 25px;
   height: 25px;
   cursor: pointer;
-  /* float: right; */
   padding: 5px;
 }
 .btn:hover {
@@ -90,7 +88,7 @@ p {
   position: absolute;
   left: 99%;
   top: 40%;
-  width: 100%;
+  /* width: 100%; */
   transform-origin: 0 0;
   transform: rotate(90deg);
 }

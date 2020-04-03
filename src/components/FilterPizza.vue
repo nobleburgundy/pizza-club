@@ -11,7 +11,7 @@
         <option value="1">1</option>
       </select>
     </div>
-    <button id="add-pizza-btn" @click="openModal()">Add Pizza</button>
+    <i class="fas fa-pizza-slice fa-lg" id="add-pizza-btn" @click="openModal()"></i>
     <AddPizza v-model="modalOpen" />
   </div>
 </template>
@@ -54,9 +54,8 @@ select {
   float: left;
 }
 #add-pizza-btn {
-  border: 1px solid #41b883;
   padding: 5px;
-  width: 200px;
   float: right;
+  cursor: pointer;
 }
 </style>
