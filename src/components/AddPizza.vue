@@ -107,7 +107,7 @@ h2 {
   margin: auto;
   text-transform: uppercase;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  text-shadow: lightgrey 5px 1px;
+  text-shadow: lightgrey 2px 1px;
   letter-spacing: 0.5rem;
 }
 </style>
