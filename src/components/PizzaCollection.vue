@@ -54,6 +54,7 @@ export default {
   position: relative;
   padding-right: 2rem;
   height: 170px;
+  overflow: hidden;
 }
 
 @media (max-width: 900px) {

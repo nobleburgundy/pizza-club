@@ -7,11 +7,12 @@
       <input type="text" v-model="description" data-test-id="description" placeholder="description" />
       <input type="text" v-model="style" data-test-id="style" id="style" placeholder="style" />
       <select v-model="score" data-test-id="score" id="score">
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
+        <option selected>Score</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
       </select>
       <input type="submit" value="submit" />
       <button @click.prevent="close">close</button>
@@ -65,7 +66,7 @@ export default {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.87);
 }
 form {
   margin: 15% auto;

@@ -23,6 +23,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  line-height: 1.4;
+  width: 80%;
+  margin: auto auto;
 }
 .container {
   max-width: 1100px;
