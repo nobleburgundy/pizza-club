@@ -21,15 +21,20 @@ const actions = {
 
     commit("setPizzas", response.data);
   },
-  async addPizza({ commit }, restaurant, pizza, description, style, score) {
-    const response = await axios.post("http://localhost:5000/api/pizzas", {
-      restaurant,
-      pizza,
-      description,
-      style,
-      score,
-    });
+  async addPizza({ commit }, payload) {
+    const postPayload = {
+      restaurant: payload[0],
+      pizza: payload[1],
+      description: payload[2],
+      style: payload[3],
+      score: payload[4],
+    };
+    const response = await axios.post(
+      "http://localhost:5000/api/pizzas",
+      postPayload
+    );
 
+    console.log(response);
     commit("newPizza", response.data);
   },
   async deletePizza({ commit }, id) {
