@@ -51,7 +51,6 @@
   ],
   "husky": {
     "hooks": {
-      "post-commit": "npm test",
       "pre-push": "npm test"
     }
   }
