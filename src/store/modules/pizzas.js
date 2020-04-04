@@ -1,16 +1,13 @@
 import axios from "axios";
 
 const getDefaultState = () => {
-  return {
-    pizzas: [],
-    status: "default"
-  };
+  return { pizzas: [], status: "default" };
 };
 
 const state = getDefaultState();
 
 const getters = {
-  allPizzas: state => state.pizzas
+  allPizzas: (state) => state.pizzas,
 };
 
 const actions = {
@@ -24,15 +21,20 @@ const actions = {
 
     commit("setPizzas", response.data);
   },
-  async addPizza({ commit }, restaurant, pizza, description, style, score) {
-    const response = await axios.post("http://localhost:5000/api/pizzas", {
-      restaurant,
-      pizza,
-      description,
-      style,
-      score
-    });
+  async addPizza({ commit }, payload) {
+    const postPayload = {
+      restaurant: payload[0],
+      pizza: payload[1],
+      description: payload[2],
+      style: payload[3],
+      score: payload[4],
+    };
+    const response = await axios.post(
+      "http://localhost:5000/api/pizzas",
+      postPayload
+    );
 
+    console.log(response);
     commit("newPizza", response.data);
   },
   async deletePizza({ commit }, id) {
@@ -52,7 +54,9 @@ const actions = {
     if (score === 0) {
       dispatch("fetchPizzas");
     } else {
-      commit("filterPizzas", score);
+      dispatch("fetchPizzas")
+        .then(() => commit("filterPizzas", score))
+        .catch((err) => console.log(err.message));
     }
   },
   async updatePizza({ commit }, updatedPizza) {
@@ -62,30 +66,25 @@ const actions = {
     );
     console.log(response.data);
     commit("updatePizza", updatedPizza);
-  }
+  },
 };
 
 const mutations = {
-  resetPizzaState: state => state.pizzas,
+  resetPizzaState: (state) => state.pizzas,
   setPizzas: (state, pizzas) => (state.pizzas = pizzas),
   newPizza: (state, pizza) => state.pizzas.push(pizza),
   removePizza: (state, id) =>
-    (state.pizzas = state.pizzas.filter(pizza => pizza._id !== id)),
+    (state.pizzas = state.pizzas.filter((pizza) => pizza._id !== id)),
   filterPizzas: (state, score) =>
-    (state.pizzas = state.pizzas.filter(pizza => pizza.score == score)),
+    (state.pizzas = state.pizzas.filter((pizza) => pizza.score == score)),
   updatePizza: (state, updatedPizza) => {
     const index = state.pizzas.findIndex(
-      pizza => pizza.id === updatedPizza._id
+      (pizza) => pizza.id === updatedPizza._id
     );
     if (index !== -1) {
       state.pizzas.splice(index, 1, updatedPizza);
     }
-  }
+  },
 };
 
-export default {
-  state,
-  getters,
-  actions,
-  mutations
-};
+export default { state, getters, actions, mutations };

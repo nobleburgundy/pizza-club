@@ -42,13 +42,13 @@ export default {
     ...mapActions(["addPizza"]),
     onSubmit(e) {
       e.preventDefault();
-      this.addPizza(
+      this.addPizza([
         this.restaurant,
         this.pizza,
         this.description,
         this.style,
         this.score
-      );
+      ]);
     },
     close() {
       this.$emit("input", !this.value);
