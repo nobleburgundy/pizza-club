@@ -29,13 +29,9 @@ const actions = {
       style: payload[3],
       score: payload[4],
     };
-    const response = await axios.post(
-      "http://localhost:5000/api/pizzas",
-      postPayload
-    );
+    await axios.post("http://localhost:5000/api/pizzas", postPayload);
 
-    console.log(response);
-    commit("newPizza", response.data);
+    commit("newPizza", postPayload);
   },
   async deletePizza({ commit }, id) {
     const response = await axios.delete(
