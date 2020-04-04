@@ -48,7 +48,9 @@ export default {
         this.description,
         this.style,
         this.score
-      ]);
+      ]).then(() => {
+        this.close();
+      });
     },
     close() {
       this.$emit("input", !this.value);
