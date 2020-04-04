@@ -4,22 +4,23 @@ const postPayload = {
   restaurant: "Test Restaurant " + new Date().getUTCMilliseconds(),
   pizza: "Pepperoni " + new Date().getUTCMilliseconds(),
   description: "Best ever test " + new Date().getUTCMilliseconds(),
-  score: 5
+  style: "TEST",
+  score: 1,
 };
 
 describe("API smoke test", () => {
   it("GET request test", () => {
-    cy.request("http://localhost:5000/api/pizzas").then(response => {
-      expect(response.status).to.eq(200);
+    cy.request("http://localhost:5000/api/pizzas").then((response) => {
+      expect(response.status).to;
       expect(response.body.length).to.greaterThan(0);
     });
   });
   it("GET request with RESTAURANT query", () => {
     const input = "Young Joni";
     cy.request(`http://localhost:5000/api/pizzas?restaurant=${input}`).then(
-      response => {
+      (response) => {
         expect(response.status).to.eq(200);
-        response.body.forEach(element => {
+        response.body.forEach((element) => {
           expect(element.restaurant).to.eq(input);
         });
       }
@@ -28,9 +29,9 @@ describe("API smoke test", () => {
   it("GET request with SCORE query", () => {
     const score = 5;
     cy.request(`http://localhost:5000/api/pizzas?score=${score}`).then(
-      response => {
+      (response) => {
         expect(response.status).to.eq(200);
-        response.body.forEach(element => {
+        response.body.forEach((element) => {
           expect(element.score).to.eq(score);
         });
       }
@@ -39,9 +40,9 @@ describe("API smoke test", () => {
   it("GET request with PIZZA query", () => {
     const pizza = "Pepperoni";
     cy.request(`http://localhost:5000/api/pizzas?pizza=${pizza}`).then(
-      response => {
+      (response) => {
         expect(response.status).to.eq(200);
-        response.body.forEach(element => {
+        response.body.forEach((element) => {
           expect(element.pizza).to.eq(pizza);
         });
       }
@@ -50,9 +51,9 @@ describe("API smoke test", () => {
   it("GET request with STYLE query", () => {
     const style = "Classic";
     cy.request(`http://localhost:5000/api/pizzas?style=${style}`).then(
-      response => {
+      (response) => {
         expect(response.status).to.eq(200);
-        response.body.forEach(element => {
+        response.body.forEach((element) => {
           expect(element.style).to.eq(style);
         });
       }
@@ -60,15 +61,16 @@ describe("API smoke test", () => {
   });
   it("GET request with no results", () => {
     const xyz = "xyz";
-    cy.request(`http://localhost:5000/api/pizzas?xyz=${xyz}`).then(response => {
-      expect(response.status).to.eq(200);
-      expect(response.body.length).to.eq(0);
-    });
+    cy.request(`http://localhost:5000/api/pizzas?xyz=${xyz}`).then(
+      (response) => {
+        expect(response.status).to.eq(200);
+        expect(response.body.length).to.eq(0);
+      }
+    );
   });
   it("POST request test", () => {
     cy.request("POST", "http://localhost:5000/api/pizzas", postPayload).then(
-      response => {
-        console.log(response);
+      (response) => {
         expect(response.status).to.eq(201);
       }
     );
@@ -79,13 +81,13 @@ before(() => {
   cy.visit("/");
 });
 
-describe("UI Smoke Test", function() {
-  it("Application opens", function() {
+describe("UI Smoke Test", function () {
+  it("Application opens", function () {
     cy.xpath("//h1")
       .should("be.visible")
       .and("contain", "Welcome to Pizza Club");
   });
-  it("Filter Pizzas Filter Exists", function() {
+  it("Filter Pizzas Filter Exists", function () {
     cy.xpath("//select[@id='filter-pizzas']").should("be.visible");
   });
   it("Add Pizza form should be visible", () => {
