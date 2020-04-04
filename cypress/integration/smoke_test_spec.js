@@ -72,7 +72,6 @@ describe("API smoke test", () => {
     cy.request("POST", "http://localhost:5000/api/pizzas", postPayload).then(
       (response) => {
         expect(response.status).to.eq(201);
-        expect(response.body.length).to.eq(1);
       }
     );
   });
