@@ -15,32 +15,31 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
-    <i class="far fa-edit edit" @dblclick="updatePizza(pizza)"></i>
+    <i class="far fa-edit edit" @click="openModal(pizza._id)"></i>
     <i class="fas fa-trash-alt del" @click="deletePizza(pizza._id)"></i>
+    <UpdatePizza v-model="modalOpen" />
   </div>
 </template>
 
 <script>
 import { mapActions } from "vuex";
+import UpdatePizza from "../components/UpdatePizza";
 
 export default {
   name: "PizzaItem",
   props: ["pizza"],
+  components: { UpdatePizza },
+  data() {
+    return {
+      modalOpen: false,
+    };
+  },
   methods: {
     ...mapActions(["deletePizza", "updatePizza"]),
-    onDblClick(pizza) {
-      const updPizza = {
-        id: pizza._id,
-        restaurant: pizza.restaurant + " updated",
-        description: pizza.description,
-        style: pizza.style,
-        score: pizza.score,
-        createdAt: pizza.createdAt
-      };
-
-      this.updatePizza(updPizza);
-    }
-  }
+    openModal() {
+      this.modalOpen = !this.modalOpen;
+    },
+  },
 };
 </script>
 

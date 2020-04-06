@@ -2,7 +2,11 @@
   <div class="filter-row">
     <div class="filter">
       <label for="filter-pizzas">Score:</label>
-      <select id="filter-pizzas" name="filter-pizzas" @change="filterPizzas($event)">
+      <select
+        id="filter-pizzas"
+        name="filter-pizzas"
+        @change="filterPizzas($event)"
+      >
         <option value="0" default>All</option>
         <option value="5">5</option>
         <option value="4">4</option>
@@ -11,7 +15,11 @@
         <option value="1">1</option>
       </select>
     </div>
-    <i class="fas fa-pizza-slice fa-lg" id="add-pizza-btn" @click="openModal()"></i>
+    <i
+      class="fas fa-pizza-slice fa-lg"
+      id="add-pizza-btn"
+      @click="openModal()"
+    ></i>
     <AddPizza v-model="modalOpen" />
   </div>
 </template>
@@ -25,15 +33,15 @@ export default {
   components: { AddPizza },
   data() {
     return {
-      modalOpen: false
+      modalOpen: false,
     };
   },
   methods: {
     ...mapActions(["filterPizzas", "fetchPizzas"]),
     openModal() {
       this.modalOpen = !this.modalOpen;
-    }
-  }
+    },
+  },
 };
 </script>
 
