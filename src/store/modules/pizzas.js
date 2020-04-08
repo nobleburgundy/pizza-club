@@ -56,11 +56,18 @@ const actions = {
     }
   },
   async updatePizza({ commit }, updatedPizza) {
-    const response = await axios.put(
-      `http://localhost:5000/api/pizzas/${updatedPizza._id}`,
-      updatedPizza
-    );
-    console.log(response.data);
+    const testUp = {
+      _id: updatedPizza[0],
+      restaurant: updatedPizza[1],
+      pizza: updatedPizza[2],
+      description: updatedPizza[3],
+      style: updatedPizza[4],
+      score: updatedPizza[5],
+    };
+    console.log(testUp);
+    const url = `http://localhost:5000/api/pizzas/${updatedPizza._id}`;
+    console.log("test url = " + url);
+    await axios.put(url, updatedPizza);
     commit("updatePizza", updatedPizza);
   },
 };

@@ -15,7 +15,7 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
-    <i class="far fa-edit edit" @click="openModal(pizza._id)"></i>
+    <i class="far fa-edit edit" @click="openModal(pizza)"></i>
     <i class="fas fa-trash-alt del" @click="deletePizza(pizza._id)"></i>
     <UpdatePizza v-model="modalOpen" />
   </div>
@@ -31,15 +31,16 @@ export default {
   components: { UpdatePizza },
   data() {
     return {
-      modalOpen: false,
+      modalOpen: false
     };
   },
   methods: {
-    ...mapActions(["deletePizza", "updatePizza"]),
-    openModal() {
+    ...mapActions(["deletePizza"]),
+    openModal(pizza) {
       this.modalOpen = !this.modalOpen;
-    },
-  },
+      return pizza;
+    }
+  }
 };
 </script>
 

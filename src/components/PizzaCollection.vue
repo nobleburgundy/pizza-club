@@ -13,24 +13,7 @@ import PizzaItem from "./Pizza.vue";
 export default {
   name: "Pizzas",
   methods: {
-    ...mapActions([
-      "fetchPizzas",
-      "deletePizza",
-      "filterPizzas",
-      "updatePizza"
-    ]),
-    onDblClick(pizza) {
-      const updPizza = {
-        id: pizza._id,
-        restaurant: pizza.restaurant + " updated",
-        description: pizza.description,
-        style: pizza.style,
-        score: pizza.score,
-        createdAt: pizza.createdAt
-      };
-
-      this.updatePizza(updPizza);
-    }
+    ...mapActions(["fetchPizzas", "deletePizza", "filterPizzas", "updatePizza"])
   },
   computed: mapGetters(["allPizzas"]),
   created() {

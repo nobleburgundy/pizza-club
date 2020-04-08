@@ -2,6 +2,7 @@
   <div class="update" id="update-pizza-container" v-show="value">
     <form @submit="onSubmit">
       <h2>Update Pizza</h2>
+      <h2 data-test-id="update-id">ID: {{pizza._id}}</h2>
       <input type="text" v-model="restaurant" data-test-id="restaurant" />
       <input type="text" v-model="pizza" data-test-id="pizza" />
       <input type="text" v-model="description" data-test-id="description" />
@@ -27,36 +28,39 @@ export default {
   name: "UpdatePizza",
   data() {
     return {
+      id: "",
       restaurant: "",
       pizza: "",
       description: "",
       style: "",
-      score: "Score",
+      score: "Score"
     };
   },
   props: {
     value: {
-      required: true,
-    },
+      required: true
+    }
   },
   methods: {
     ...mapActions(["updatePizza"]),
     onSubmit(e) {
       e.preventDefault();
       this.updatePizza([
+        this.id,
         this.restaurant,
         this.pizza,
         this.description,
         this.style,
         this.score,
+        this.updatedAt
       ]).then(() => {
         this.close();
       });
     },
     close() {
       this.$emit("input", !this.value);
-    },
-  },
+    }
+  }
 };
 </script>
 
