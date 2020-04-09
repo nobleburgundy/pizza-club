@@ -28,7 +28,6 @@ export default {
   name: "UpdatePizza",
   data() {
     return {
-      id: "",
       restaurant: "",
       pizza: "",
       description: "",
@@ -36,11 +35,7 @@ export default {
       score: "Score"
     };
   },
-  props: {
-    value: {
-      required: true
-    }
-  },
+  props: ["id", "value"],
   methods: {
     ...mapActions(["updatePizza"]),
     onSubmit(e) {

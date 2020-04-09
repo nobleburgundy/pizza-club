@@ -15,9 +15,9 @@
     <div id="score">
       <p>{{ pizza.score }}</p>
     </div>
-    <i class="far fa-edit edit" @click="openModal(pizza)"></i>
+    <i class="far fa-edit edit" @click="openModal()"></i>
     <i class="fas fa-trash-alt del" @click="deletePizza(pizza._id)"></i>
-    <UpdatePizza v-model="modalOpen" />
+    <UpdatePizza v-model="modalOpen" :id="pizza._id" />
   </div>
 </template>
 

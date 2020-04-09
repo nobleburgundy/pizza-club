@@ -65,10 +65,10 @@ const actions = {
       score: updatedPizza[5],
     };
     console.log(testUp);
-    const url = `http://localhost:5000/api/pizzas/${updatedPizza._id}`;
+    const url = `http://localhost:5000/api/pizzas/${testUp._id}`;
     console.log("test url = " + url);
-    await axios.put(url, updatedPizza);
-    commit("updatePizza", updatedPizza);
+    await axios.put(url, testUp);
+    commit("updatePizza", testUp);
   },
 };
 
