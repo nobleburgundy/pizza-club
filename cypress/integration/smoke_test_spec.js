@@ -96,7 +96,7 @@ describe("UI Smoke Test", function() {
 const rest = new Date().getUTCMilliseconds();
 
 describe("Add Pizza Test", () => {
-  it("Add Pizza form should be visible", () => {
+  it("Open Add Pizza form", () => {
     cy.xpath("//i[@id='add-pizza-btn']").click();
     cy.xpath("//form[@id='add-pizza-form']").should("be.visible");
   });
