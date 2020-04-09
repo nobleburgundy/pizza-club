@@ -87,12 +87,9 @@ describe("UI Smoke Test", function() {
       .should("be.visible")
       .and("contain", "Welcome to Pizza Club");
   });
-  it("Filter Pizzas Filter Exists", function() {
+  it("UI Elements should load", function() {
     cy.xpath("//select[@id='filter-pizzas']").should("be.visible");
-  });
-  it("Add Pizza form should be visible", () => {
-    cy.xpath("//i[@id='add-pizza-btn']").click();
-    cy.xpath("//form[@id='add-pizza-form']").should("be.visible");
+    cy.xpath("//i[@id='add-pizza-btn']").should("be.visible");
   });
 });
 
