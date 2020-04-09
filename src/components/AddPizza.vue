@@ -25,7 +25,7 @@
         <option value="5">5</option>
       </select>
       <input type="submit" value="submit" data-test-id="add-pizza-submit" />
-      <button @click.prevent="close">close</button>
+      <button @click.prevent="close" data-test-id="close">close</button>
     </form>
   </div>
 </template>
