@@ -81,13 +81,13 @@ before(() => {
   cy.visit("/");
 });
 
-describe("UI Smoke Test", function () {
-  it("Application opens", function () {
+describe("UI Smoke Test", function() {
+  it("Application opens", function() {
     cy.xpath("//h1")
       .should("be.visible")
       .and("contain", "Welcome to Pizza Club");
   });
-  it("Filter Pizzas Filter Exists", function () {
+  it("Filter Pizzas Filter Exists", function() {
     cy.xpath("//select[@id='filter-pizzas']").should("be.visible");
   });
   it("Add Pizza form should be visible", () => {
@@ -99,23 +99,31 @@ describe("UI Smoke Test", function () {
 const rest = new Date().getUTCMilliseconds();
 
 describe("Add Pizza Test", () => {
+  it("Add Pizza form should be visible", () => {
+    cy.xpath("//i[@id='add-pizza-btn']").click();
+    cy.xpath("//form[@id='add-pizza-form']").should("be.visible");
+  });
   it("Fill out form", () => {
-    cy.xpath("//form[@id='add-pizza-form']")
-      .scrollIntoView()
-      .xpath("./input[@data-test-id='restaurant']")
+    cy.xpath("//input[@data-test-id='add-restaurant']")
       .type("Test Restaurant " + rest)
-      .should("have.value", "Test Restaurant " + rest)
-      .xpath("//input[@data-test-id='pizza']")
+      .should("have.value", "Test Restaurant " + rest);
+    cy.xpath("//input[@data-test-id='add-pizza']")
       .type("Test pizza " + rest)
-      .should("have.value", "Test pizza " + rest)
-      .xpath("//input[@data-test-id='description']")
+      .should("have.value", "Test pizza " + rest);
+    cy.xpath("//input[@data-test-id='add-description']")
       .type("Test description " + rest)
-      .should("have.value", "Test description " + rest)
-      .xpath("//input[@data-test-id='style']")
+      .should("have.value", "Test description " + rest);
+    cy.xpath("//input[@data-test-id='add-style']")
       .type("Test Style " + rest)
-      .should("have.value", "Test Style " + rest)
-      .xpath("//select[@data-test-id='score']")
+      .should("have.value", "Test Style " + rest);
+    cy.xpath("//select[@data-test-id='add-score']")
       .select("4")
       .should("have.value", "4");
+    cy.xpath("//input[@data-test-id='add-pizza-submit']").click();
+  });
+  it("New pizza should be added to grid", () => {
+    cy.xpath(`//h2[contains(text(), 'Test Restaurant ${rest}')]`).should(
+      "be.visible"
+    );
   });
 });

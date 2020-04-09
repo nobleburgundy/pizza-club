@@ -2,11 +2,21 @@
   <div class="add" id="add-pizza-container" v-show="value">
     <form id="add-pizza-form" @submit="onSubmit">
       <h2>Add Pizza</h2>
-      <input type="text" v-model="restaurant" data-test-id="restaurant" placeholder="restaurant" />
-      <input type="text" v-model="pizza" data-test-id="pizza" placeholder="pizza" />
-      <input type="text" v-model="description" data-test-id="description" placeholder="description" />
-      <input type="text" v-model="style" data-test-id="style" id="style" placeholder="style" />
-      <select v-model="score" data-test-id="score" id="score">
+      <input
+        type="text"
+        v-model="restaurant"
+        data-test-id="add-restaurant"
+        placeholder="restaurant"
+      />
+      <input type="text" v-model="pizza" data-test-id="add-pizza" placeholder="pizza" />
+      <input
+        type="text"
+        v-model="description"
+        data-test-id="add-description"
+        placeholder="description"
+      />
+      <input type="text" v-model="style" data-test-id="add-style" id="style" placeholder="style" />
+      <select v-model="score" data-test-id="add-score" id="score">
         <option selected>Score</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -14,7 +24,7 @@
         <option value="4">4</option>
         <option value="5">5</option>
       </select>
-      <input type="submit" value="submit" />
+      <input type="submit" value="submit" data-test-id="add-pizza-submit" />
       <button @click.prevent="close">close</button>
     </form>
   </div>
