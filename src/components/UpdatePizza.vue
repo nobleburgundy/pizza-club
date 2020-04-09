@@ -2,12 +2,35 @@
   <div class="update" id="update-pizza-container" v-show="value">
     <form @submit="onSubmit">
       <h2>Update Pizza</h2>
-      <h2 data-test-id="update-id">ID: {{pizza._id}}</h2>
-      <input type="text" v-model="restaurant" data-test-id="restaurant" />
-      <input type="text" v-model="pizza" data-test-id="pizza" />
-      <input type="text" v-model="description" data-test-id="description" />
-      <input type="text" v-model="style" data-test-id="style" />
-      <select v-model="score" data-test-id="score">
+      <input
+        class="input"
+        type="text"
+        v-model="restaurant"
+        data-test-id="restaurant"
+        v-bind:placeholder="pizza.restaurant"
+      />
+      <input
+        class="input"
+        type="text"
+        v-model="pizza"
+        data-test-id="pizza"
+        v-bind:placeholder="pizza.pizza"
+      />
+      <input
+        class="input"
+        type="text"
+        v-model="description"
+        data-test-id="description"
+        v-bind:placeholder="pizza.description"
+      />
+      <input
+        class="input"
+        type="text"
+        v-model="pizza_style"
+        data-test-id="pizza_style"
+        v-bind:placeholder="pizza.pizza_style"
+      />
+      <select v-model="score" data-test-id="score" v-bind:value="pizza.score">
         <option selected>Score</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -27,15 +50,17 @@ import { mapActions } from "vuex";
 export default {
   name: "UpdatePizza",
   data() {
-    return {
-      restaurant: "",
-      pizza: "",
-      description: "",
-      style: "",
-      score: "Score"
-    };
+    return {};
   },
-  props: ["id", "value"],
+  props: [
+    "id",
+    "restaurant",
+    "pizza",
+    "description",
+    "pizza_style",
+    "score",
+    "value"
+  ],
   methods: {
     ...mapActions(["updatePizza"]),
     onSubmit(e) {
@@ -45,7 +70,7 @@ export default {
         this.restaurant,
         this.pizza,
         this.description,
-        this.style,
+        this.pizza_style,
         this.score,
         this.updatedAt
       ]).then(() => {
