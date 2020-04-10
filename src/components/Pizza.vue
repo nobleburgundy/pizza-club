@@ -95,10 +95,13 @@ p {
   text-transform: uppercase;
   position: absolute;
   left: 99%;
-  top: 40%;
-  /* width: 100%; */
+  top: 20%;
+  width: 100px;
   transform-origin: 0 0;
   transform: rotate(90deg);
+}
+#style p {
+  text-align: center;
 }
 .del {
   position: absolute;
