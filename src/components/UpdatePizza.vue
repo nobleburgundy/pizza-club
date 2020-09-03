@@ -30,7 +30,7 @@
         data-test-id="pizza_style"
         v-bind:placeholder="pizza.pizza_style"
       />
-      <select v-model="score" data-test-id="score" v-bind:value="pizza.score">
+      <select v-model="score" data-test-id="score" id="score" v-bind:value="pizza.score">
         <option selected>Score</option>
         <option value="1">1</option>
         <option value="2">2</option>
@@ -39,7 +39,7 @@
         <option value="5">5</option>
       </select>
       <input type="submit" value="submit" />
-      <button @click.prevent="close">close</button>
+      <button @click.prevent="close">cancel</button>
     </form>
   </div>
 </template>
@@ -59,10 +59,10 @@ export default {
     "description",
     "pizza_style",
     "score",
-    "value"
+    "value",
   ],
   methods: {
-    ...mapActions(["updatePizza"]),
+    ...mapActions(["updatePizza", "fetchPizzas"]),
     onSubmit(e) {
       e.preventDefault();
       this.updatePizza([
@@ -72,15 +72,15 @@ export default {
         this.description,
         this.pizza_style,
         this.score,
-        this.updatedAt
+        this.updatedAt,
       ]).then(() => {
         this.close();
       });
     },
     close() {
       this.$emit("input", !this.value);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -137,5 +137,11 @@ h2 {
   text-transform: uppercase;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   letter-spacing: 0.5rem;
+}
+@media only screen and (max-width: 600px) {
+  form {
+    width: 98%;
+    margin-top: 25%;
+  }
 }
 </style>

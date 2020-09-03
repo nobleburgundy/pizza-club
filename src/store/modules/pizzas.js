@@ -7,7 +7,7 @@ const getDefaultState = () => {
 const state = getDefaultState();
 
 const getters = {
-  allPizzas: (state) => state.pizzas,
+  allPizzas: state => state.pizzas
 };
 
 const actions = {
@@ -27,7 +27,7 @@ const actions = {
       pizza: payload[1],
       description: payload[2],
       style: payload[3],
-      score: payload[4],
+      score: payload[4]
     };
     await axios.post("http://localhost:5000/api/pizzas", postPayload);
 
@@ -52,7 +52,7 @@ const actions = {
     } else {
       dispatch("fetchPizzas")
         .then(() => commit("filterPizzas", score))
-        .catch((err) => console.log(err.message));
+        .catch(err => console.log(err.message));
     }
   },
   async updatePizza({ commit }, updatedPizza) {
@@ -62,32 +62,33 @@ const actions = {
       pizza: updatedPizza[2],
       description: updatedPizza[3],
       style: updatedPizza[4],
-      score: updatedPizza[5],
+      score: updatedPizza[5]
     };
     console.log(testUp);
     const url = `http://localhost:5000/api/pizzas/${testUp._id}`;
     console.log("test url = " + url);
     await axios.put(url, testUp);
     commit("updatePizza", testUp);
-  },
+  }
 };
 
 const mutations = {
-  resetPizzaState: (state) => state.pizzas,
+  resetPizzaState: state => state.pizzas,
   setPizzas: (state, pizzas) => (state.pizzas = pizzas),
   newPizza: (state, pizza) => state.pizzas.push(pizza),
   removePizza: (state, id) =>
-    (state.pizzas = state.pizzas.filter((pizza) => pizza._id !== id)),
+    (state.pizzas = state.pizzas.filter(pizza => pizza._id !== id)),
   filterPizzas: (state, score) =>
-    (state.pizzas = state.pizzas.filter((pizza) => pizza.score == score)),
+    (state.pizzas = state.pizzas.filter(pizza => pizza.score == score)),
   updatePizza: (state, updatedPizza) => {
     const index = state.pizzas.findIndex(
-      (pizza) => pizza.id === updatedPizza._id
+      pizza => pizza.id === updatedPizza._id
     );
     if (index !== -1) {
       state.pizzas.splice(index, 1, updatedPizza);
+      // state.pizzas = updatedPizza;
     }
-  },
+  }
 };
 
 export default { state, getters, actions, mutations };

@@ -40,13 +40,13 @@ export default {
       pizza: "",
       description: "",
       style: "",
-      score: 0
+      score: 0,
     };
   },
   props: {
     value: {
-      required: true
-    }
+      required: true,
+    },
   },
   methods: {
     ...mapActions(["addPizza"]),
@@ -57,15 +57,15 @@ export default {
         this.pizza,
         this.description,
         this.style,
-        this.score
+        this.score,
       ]).then(() => {
         this.close();
       });
     },
     close() {
       this.$emit("input", !this.value);
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -106,7 +106,7 @@ label {
   flex: 1 0 100px;
 }
 input[type="submit"] {
-  flex: 1 0 250px;
+  flex: 1 0 240px;
 }
 #style {
   flex: 1 0 250px;
@@ -122,5 +122,11 @@ h2 {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-shadow: yellow 4px 0px;
   letter-spacing: 0.5rem;
+}
+@media only screen and (max-width: 600px) {
+  form {
+    width: 98%;
+    margin-top: 25%;
+  }
 }
 </style>
