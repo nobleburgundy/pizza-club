@@ -2,7 +2,7 @@
   <header class="header">
     <h1>Welcome to Pizza Club!</h1>
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">Home</router-link>|
       <router-link to="/about">About</router-link>
     </div>
   </header>
@@ -10,7 +10,7 @@
 
 <script>
 export default {
-  name: "Header"
+  name: "Header",
 };
 </script>
 
@@ -18,7 +18,9 @@ export default {
 h1 {
   text-align: center;
   padding: 10px;
-  text-shadow: lightgrey 5px 5px;
+  font-family: "Roboto", "Futura", monospace;
+  font-size: xx-large;
+  text-shadow: lightgrey -5px 1px;
 }
 #nav {
   margin: 0;
@@ -26,5 +28,10 @@ h1 {
 }
 .header a {
   text-decoration: none;
+}
+@media only screen and (max-width: 600px) {
+  h1 {
+    font-size: large;
+  }
 }
 </style>
