@@ -22,3 +22,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+# Backend
+See github.com/nobleburgundy/pizza-hub for running the back-end of Pizza Club. 
