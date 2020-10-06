@@ -1,4 +1,7 @@
-import express from "express";
+const {
+    static
+} = require('express');
+const express = require('express');
 const app = express();
 
 app.use(static(__dirname + '/dist'));
