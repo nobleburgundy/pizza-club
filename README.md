@@ -40,8 +40,7 @@ Contributions are welcome. If you are interested in contributing to this project
 
 ## Tests
 
-No tests available at this time.
-
+There are cypress tests that are run automatically before `git push`. `git push --no-verify` to skip. Front-end and back-end need to be running for tests to work.
 
 ## Questions? 
 
