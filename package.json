@@ -56,9 +56,4 @@
     "> 1%",
     "last 2 versions"
   ],
-  "husky": {
-    "hooks": {
-      "pre-push": "npm test"
-    }
-  }
 }
